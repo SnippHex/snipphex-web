@@ -21,7 +21,15 @@ const format = {
   YY: '%d years ago'
 };
 
-export default function nicetime(from, to) {
+function shorten(str) {
+  return str
+			.replace('seconds', 'sec').replace('second', 'sec')
+			.replace('minutes', 'min').replace('minute', 'min')
+			.replace('hours', 'hr').replace('hour', 'hr');
+}
+
+export default function nicetime(from, to, short) {
+  short = short || false;
   to = to || new Date().getTime();
   if (from instanceof Date) {
     from = from.getTime();
@@ -47,5 +55,6 @@ export default function nicetime(from, to) {
 							months  < thresholds.M   && ['MM', months]  ||
 							years   <= 1             && ['y']           || ['yy', years];
 
-  return format[res[0]].replace('%d', res[1]);
+  const result = format[res[0]].replace('%d', res[1]);
+  return (short) ? shorten(result) : result;
 }

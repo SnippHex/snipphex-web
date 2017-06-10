@@ -39,19 +39,12 @@ export default class Home extends Component {
     route(`/${cp.key}`);
   }
 
-  shortenMoment(str) {
-    return str
-			.replace('seconds', 'sec').replace('second', 'sec')
-			.replace('minutes', 'min').replace('minute', 'min')
-			.replace('hours', 'hr').replace('hour', 'hr');
-  }
-
   makeLatestCpItem(cp) {
     return (
 			<div onClick={() => this.handleCpItemClick(cp)} class="latest-cp">
 				<span>{cp.title}</span>
 				<small>{formatSize(cp.size)}</small>
-				<small>{cp.syntaxName} | {this.shortenMoment(nicetime(cp.createdAt * 1000))}</small>
+				<small>{cp.syntaxName} | {nicetime(cp.createdAt * 1000, undefined, true)}</small>
 			</div>
     );
   }
