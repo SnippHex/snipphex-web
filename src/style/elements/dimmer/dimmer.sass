@@ -1,0 +1,44 @@
+=dimmer-active
+  height: 100%
+  height: 100vh
+  opacity: 1
+  transition: opacity .25s cubic-bezier(0.4, 0.0, 0.2, 1), height 0s 0s linear
+
+body.dimmer-toggle
+  .dimmer
+    +dimmer-active
+
+.dimmer
+  background: rgba(0, 0, 0, .64)
+  position: fixed
+  top: $app-bar-height
+  left: 0
+  height: 0
+  width: 100%
+  width: 100vw
+  z-index: 2
+  opacity: 0
+  transition: opacity .25s cubic-bezier(0.4, 0.0, 0.2, 1), height 0s .25s linear
+  
+  +tablet
+    top: $app-bar-height-tablet
+
+.app.side-bar-right-toggle,
+.app.side-bar-left-toggle
+  .dimmer
+    +dimmer-active
+  
++tablet
+  .app.side-bar-left-toggle
+    .dimmer
+      +dimmer-active
+    
+  .app.side-bar-right-toggle
+    .dimmer
+      display: none
+
++wide
+  .app.side-bar-left-toggle,
+  .app.side-bar-right-toggle
+    .dimmer
+      display: none

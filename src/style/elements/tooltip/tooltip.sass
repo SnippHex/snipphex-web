@@ -1,0 +1,29 @@
+.tooltip
+	display: inline-block
+	position: absolute
+	top: 110%
+	-webkit-font-smoothing: subpixel-antialiased
+	color: $color-light-text-primary
+	text-align: center
+	text-decoration: none
+	text-shadow: none
+	text-transform: none
+	letter-spacing: normal
+	word-wrap: break-word
+	white-space: pre
+	pointer-events: none
+	background: $color-dark-text-secondary
+	border-radius: 3px
+	opacity: 0
+	transition: opacity 0.25s ease-in
+	line-height: 1
+	padding: 0.5em
+	transform: translateX(-50%)
+	left: 50%
+  font-size: 0.9em
+
+.tooltip-target
+	position: relative
+
+.tooltip-target:hover .tooltip
+	opacity: 1

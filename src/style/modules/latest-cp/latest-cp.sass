@@ -1,0 +1,26 @@
+.latest-cp
+  padding: $spacing $gutter
+  cursor: pointer
+
+  +tablet
+    padding: $spacing $gutter-tablet
+
+  span
+    +ellipsis
+    font-size: 1.25em
+    font-weight: 300
+    padding-bottom: $spacing
+    display: block
+    color: $color-dark-text-primary
+
+  $self: &
+  &:hover
+    span
+      color: $primary-color
+
+  small
+    display: block
+    color: $color-dark-text-secondary
+
+  & + &
+    border-top: 1px solid $color-dark-text-divider

@@ -1,0 +1,26 @@
+.autocomplete
+  position: relative
+
+  &__container
+    +shadow-2
+    background: white
+    display: none
+    position: absolute
+    left: 0
+    top: 100%
+    max-height: 250px
+    width: 100%
+    overflow: auto
+
+  &__item
+    height: 50px
+    padding: 0 8px
+    line-height: 50px
+    vertical-align: middle
+    display: inline-block
+    width: 100%
+    border-top: 1px solid $color-dark-text-divider
+    cursor: pointer
+
+    &:hover
+      background: darken(white, 5%)

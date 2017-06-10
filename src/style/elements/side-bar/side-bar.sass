@@ -1,0 +1,91 @@
+$translate: 110%
+
+.side-bar
+  background: #fff
+  border-bottom: 1px solid $color-dark-text-divider
+  min-height: 100%
+  width: 100%
+  width: $side-bar-width
+  max-width: $side-bar-max-width
+  position: absolute
+  top: 0
+  padding-top: ($app-bar-height + $gutter)
+  z-index: 3
+  transition: all .25s cubic-bezier(0.4, 0.0, 0.2, 1)
+
+  .title
+    max-height: 8.8em
+    line-height: 1.1em
+    overflow: hidden
+    display: block
+    font-size: 24px
+    color: $color-dark-text-secondary
+    padding: 0 $gutter
+
+  .info-row
+    display: flex
+    padding-left: $gutter
+    padding-top: $spacing
+    padding-bottom: $spacing
+
+    span:first-child
+      flex: 0 0 auto
+      width: 100px
+      color: $color-dark-text-secondary
+
+    span:last-child
+      flex: 1 1 auto
+
+.side-bar-left
+  box-shadow: 3px 0 6px rgba(0,0,0,0.16), 3px 0 6px rgba(0,0,0,0.23)
+  transform: translateX(-$translate)
+  left: 0
+
+.side-bar-right
+  box-shadow: -3px 0 6px rgba(0,0,0,0.16), -3px 0 6px rgba(0,0,0,0.23)
+  transform: translateX($translate)
+  right: 0
+
+.app.side-bar-left-toggle
+    .side-bar-left
+      transform: translateX(0)
+
+.app.side-bar-right-toggle
+    .side-bar-right
+      transform: translateX(0)
+
++tablet
+  .side-bar
+    padding-top: ($app-bar-height-tablet + $gutter)
+    width: $side-bar-width-tablet
+    max-width: $side-bar-max-width-tablet
+    display: block
+    border-bottom: 0
+    z-index: 2
+
+    .title
+      padding: 0 $gutter-tablet
+
+    .info-row
+      padding-left: $gutter-tablet
+
+  .side-bar-right
+    right: 0
+    transform: translateX(0)
+    box-shadow: none
+    border-left: 1px solid $color-dark-text-divider
+
+  .app.side-bar-right-toggle
+    .side-bar-right
+      transform: translateX($translate)
+
++wide
+  .side-bar-left
+    box-shadow: none
+    transform: translateX(0)
+    left: 0
+    border-right: 1px solid $color-dark-text-divider
+
+  .app.side-bar-left-toggle
+    .side-bar-left
+      transform: translateX(-$translate)

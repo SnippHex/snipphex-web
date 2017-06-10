@@ -1,0 +1,36 @@
+.app
+  display: flex
+  flex-direction: column
+  
+  main
+    display: flex
+    flex: 1 0 auto
+    flex-direction: column
+    transition: margin-left .25s cubic-bezier(0.4, 0.0, 0.2, 1), margin-right .25s cubic-bezier(0.4, 0.0, 0.2, 1)
+    margin-left: 0
+  
+    section
+      flex: 1 0 auto
+      position: relative
+      
+  footer
+    flex 0 0 auto
+
++tablet
+  .app
+    main
+      flex-direction: row
+      margin-right: $side-bar-width-tablet
+
+    &.side-bar-right-toggle
+      main
+        margin-right: 0
+
++wide
+  .app
+    main
+      margin-left: $side-bar-width-tablet
+  
+    &.side-bar-left-toggle
+      main
+        margin-left: 0

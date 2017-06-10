@@ -1,0 +1,46 @@
+$icon-size: 48px
+
+$title-gutter: 72px - $icon-size - $gutter / 2
+
+.app-bar
+  +shadow-1
+  z-index: 10
+  display: flex
+  flex: 0 0 $app-bar-height
+  padding: 0 $gutter / 2 0 $gutter / 2
+  background: $primary-color
+  color: $color-light-text-primary
+  align-items: center
+
+  .title
+    font-size: 1.25em
+    margin: auto $title-gutter auto $title-gutter
+    line-height: 48px
+    text-decoration: none
+    color: $color-light-text-primary
+
+  .icon
+    width: 48px
+    height: 48px
+    cursor: pointer
+    line-height: 48px
+    vertical-align: middle
+    text-align: center
+    margin: auto 0
+    color: $color-light-icon-focus
+    transition: background ease-in 200ms
+    background: transparent
+    border-radius: 50%
+
+    &:hover
+      background: $color-dark-text-divider
+
+    &:active
+      background: $color-dark-text-secondary
+
+  .push-right
+    margin-left: auto
+
+  +tablet
+    flex-basis: $app-bar-height-tablet
+    padding: 0 $gutter-tablet / 2 0 $gutter-tablet / 2
