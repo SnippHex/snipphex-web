@@ -3,14 +3,9 @@ import AutoComplete from '../autocomplete';
 import { route } from 'preact-router';
 import nicetime from 'nicetime';
 import formatSize from 'formatsize';
+import base64EncodeUnicode from 'base64encode';
 import Store from 'store';
 import * as CpVault from 'cpvault';
-
-function b64EncodeUnicode(str) {
-  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-    return String.fromCharCode('0x' + p1);
-  }));
-}
 
 export default class Home extends Component {
   constructor() {
@@ -68,7 +63,7 @@ export default class Home extends Component {
       title: this.state.inputTitle,
       visibility: 0,
       syntaxId: (this.state.inputSyntax) ? this.state.inputSyntax.id : 1,
-      content: b64EncodeUnicode(this.state.inputCode)
+      content: base64EncodeUnicode(this.state.inputCode)
     };
 
     CpVault.uploadPaste(data).then(res => {
