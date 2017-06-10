@@ -10,6 +10,17 @@ const ENV = process.env.NODE_ENV || 'development';
 
 const CSS_MAPS = ENV!=='production';
 
+function p(n){
+  return (n < 10) ? `0${n}`: `${n}`;
+}
+
+// Version
+const __VERSION__ = '0.1';
+
+// Build date
+const now = new Date();
+const __BUILD_DATE__ = `${now.getUTCFullYear()}-${p((now.getUTCMonth() + 1))}-${p(now.getUTCDate())}:${p(now.getUTCHours())}-${p(now.getUTCMinutes())}-${p(now.getUTCSeconds())}`;
+
 module.exports = {
   context: path.resolve(__dirname, "src"),
   entry: './index.js',
@@ -123,7 +134,9 @@ module.exports = {
       disable: ENV !== 'production'
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(ENV)
+      'process.env.NODE_ENV': JSON.stringify(ENV),
+      '__VERSION__': JSON.stringify(__VERSION__),
+      '__BUILD_DATE__': JSON.stringify(__BUILD_DATE__)
     }),
     new HtmlWebpackPlugin({
       template: './index.ejs',
