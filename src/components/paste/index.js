@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import copyText from 'copytext';
+import downloadText from 'downloadtext';
 import nicetime from 'nicetime';
 import formatSize from 'formatsize';
 import * as CpVault from 'cpvault';
@@ -74,19 +75,10 @@ export default class Paste extends Component {
   }
 
   downloadPaste = () => {
-    let raw = this.getRawContent();
+    const fileName = this.getKey() + ((this.state.data.syntax.extension) ? '.' + this.state.data.syntax.extension : '');
+    const raw = this.getRawContent();
 
-    let length = raw.length;
-    let buffer = new Uint8Array(length);
-    for (let i = 0; i < length; i++) {
-      buffer[i] = raw.charCodeAt(i);
-    }
-
-    let blob = new Blob([buffer]);
-    let link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = this.getKey() + ((this.state.data.syntax.extension) ? '.' + this.state.data.syntax.extension : '');
-    link.click();
+    downloadText(fileName, raw);
   }
 
   copyPaste = () => {
