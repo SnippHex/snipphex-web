@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import Clipboard from 'clipboard';
+import copyText from 'copytext';
 import nicetime from 'nicetime';
 import formatSize from 'formatsize';
 import * as CpVault from 'cpvault';
@@ -90,12 +90,7 @@ export default class Paste extends Component {
   }
 
   copyPaste = () => {
-    let ele = document.createElement('a');
-    new Clipboard(ele, {
-      action: 'copy',
-      text: () => this.getRawContent()
-    });
-    ele.click();
+    copyText(this.getRawContent());
   }
 
   render() {
