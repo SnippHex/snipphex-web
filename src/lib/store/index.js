@@ -1,10 +1,11 @@
 import MicroEvent from 'event';
 import * as CpVault from 'cpvault';
 
+const storage = window.localStorage;
 const event = new MicroEvent();
 const store = {};
 
-// Main
+// Theme
 let themeCssPromise = null;
 store.theme = 'monokai';
 store.changeTheme = function(newTheme) {
@@ -24,6 +25,11 @@ store.getThemeCss = function() {
     return themeCssPromise;
   }
 
+  const css = storage.getItem(`theme:${store.theme}`);
+  if (css) {
+    return Promise.resolve(css);
+  }
+
   if (!store.themeCss) {
     return store.changeTheme(store.theme);
   }
@@ -31,6 +37,26 @@ store.getThemeCss = function() {
   return Promise.resolve(store.themeCss);
 };
 
+// Syntax
+let syntaxPromise = null;
+store.syntaxes = null;
+store.getSyntaxes = function() {
+  if (syntaxPromise) {
+    return syntaxPromise;
+  }
+
+  if (store.syntaxes) {
+    return Promise.resolve(store.syntaxes);
+  }
+
+  return syntaxPromise = CpVault.getSyntaxes().then(res => {
+    store.syntaxes = res.data;
+    store.update('syntax');
+    syntaxPromise = null;
+
+    return store.syntaxes;
+  });
+};
 
 // AppBar
 store.appBar = {};
@@ -54,5 +80,39 @@ store.listen = function(ev, cb) {
 store.update = function(ev) {
   event.trigger(ev || 'update');
 };
+
+// Storage
+if (storage) {
+  const version = storage.getItem('version');
+  const build = storage.getItem('build');
+  if (version !== __VERSION__ || build !== __BUILD_DATE__) {
+    console.log('New version, cleared storage.');
+    storage.clear();
+  }
+
+  storage.setItem('version', __VERSION__);
+  storage.setItem('build', __BUILD_DATE__);
+
+  const syntaxes = storage.getItem('syntaxes');
+  if (syntaxes) {
+    store.syntaxes = JSON.parse(syntaxes);
+    console.log('Syntaxes loaded from storage.', store.syntaxes.length);
+  }
+
+  const theme = storage.getItem('theme');
+  if (theme) {
+    store.theme = theme;
+    console.log('Theme loaded from storage.', theme);
+  }
+}
+
+store.listen('theme', () => {
+  storage.setItem('theme', store.theme);
+  storage.setItem(`theme:${store.theme}`, store.themeCss);
+});
+
+store.listen('syntax', () => {
+  storage.setItem('syntaxes', JSON.stringify(store.syntaxes));
+});
 
 export default store;

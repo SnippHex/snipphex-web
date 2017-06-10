@@ -25,7 +25,7 @@ export default class Home extends Component {
     Store.sideBars.right.title = 'Latest cps';
     Store.update();
 
-    CpVault.getSyntaxes().then((res) => this.setState({ syntaxes: res.data }));
+    Store.getSyntaxes().then((syntaxes) => this.setState({ syntaxes }));
     CpVault.getLatestPastes().then(res => {
       const pastes = res.data;
       this.setState({ latestPastes: pastes });
