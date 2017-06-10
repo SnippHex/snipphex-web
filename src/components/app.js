@@ -8,42 +8,42 @@ import Paste from './Paste';
 import Store from 'store';
 
 export default class App extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		window.store = Store;
-		this.state = {
-			sideBarLeftToggle: false,
-			sideBarRightToggle: false
-		};
+    window.store = Store;
+    this.state = {
+      sideBarLeftToggle: false,
+      sideBarRightToggle: false
+    };
 
-		Store.listen(() => {
-			this.forceUpdate();
-		});
-	}
+    Store.listen(() => {
+      this.forceUpdate();
+    });
+  }
 
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
-	handleRoute = e => {
-		this.currentUrl = e.url;
-	};
+  handleRoute = e => {
+    this.currentUrl = e.url;
+  };
 
-	onSideBarLeftToggle = () => {
-		this.setState({ sideBarLeftToggle: !this.state.sideBarLeftToggle });
-	}
+  onSideBarLeftToggle = () => {
+    this.setState({ sideBarLeftToggle: !this.state.sideBarLeftToggle });
+  }
 
-	onSideBarRightToggle = () => {
-		this.setState({ sideBarRightToggle: !this.state.sideBarRightToggle });
-	}
+  onSideBarRightToggle = () => {
+    this.setState({ sideBarRightToggle: !this.state.sideBarRightToggle });
+  }
 
-	render() {
-		let classes = ['app'];
-		if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
-		if (this.state.sideBarRightToggle) classes.push('side-bar-right-toggle');
+  render() {
+    let classes = ['app'];
+    if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
+    if (this.state.sideBarRightToggle) classes.push('side-bar-right-toggle');
 
-		return (
+    return (
 			<div id="app" class={classes.join(' ')}>
 				<div class="dimmer" />
 				<AppBar rightSideBarToggleIcon={Store.appBar.rightSideBarIcon} onSideBarLeftToggle={this.onSideBarLeftToggle} onSideBarRightToggle={this.onSideBarRightToggle} rightMenuIcons={Store.appBar.rightMenuIcons} />
@@ -54,6 +54,6 @@ export default class App extends Component {
 					<Paste path="/:key" />
 				</Router>
 			</div>
-		);
-	}
+    );
+  }
 }

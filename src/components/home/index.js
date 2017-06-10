@@ -7,98 +7,98 @@ import Store from 'store';
 import * as CpVault from 'cpvault';
 
 function b64EncodeUnicode(str) {
-	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-		return String.fromCharCode('0x' + p1);
-	}));
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+    return String.fromCharCode('0x' + p1);
+  }));
 }
 
 export default class Home extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.state = {
-			uploading: false,
-			inputCode: '',
-			inputTitle: '',
-			inputSyntax: null,
-			syntaxes: [],
-			latestPastes: []
-		};
-	}
+    this.state = {
+      uploading: false,
+      inputCode: '',
+      inputTitle: '',
+      inputSyntax: null,
+      syntaxes: [],
+      latestPastes: []
+    };
+  }
 
-	componentDidMount() {
-		Store.sideBars.right.title = 'Latest cps';
-		Store.update();
+  componentDidMount() {
+    Store.sideBars.right.title = 'Latest cps';
+    Store.update();
 
-		CpVault.getSyntaxes().then((res) => this.setState({ syntaxes: res.data }));
-		CpVault.getLatestPastes().then(res => {
-			const pastes = res.data;
-			this.setState({ latestPastes: pastes });
+    CpVault.getSyntaxes().then((res) => this.setState({ syntaxes: res.data }));
+    CpVault.getLatestPastes().then(res => {
+      const pastes = res.data;
+      this.setState({ latestPastes: pastes });
 
-			Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
-			Store.update();
-		});
-	}
+      Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
+      Store.update();
+    });
+  }
 
-	handleCpItemClick(cp) {
-		route(`/${cp.key}`);
-	}
+  handleCpItemClick(cp) {
+    route(`/${cp.key}`);
+  }
 
-	shortenMoment(str) {
-		return str
+  shortenMoment(str) {
+    return str
 			.replace('seconds', 'sec').replace('second', 'sec')
 			.replace('minutes', 'min').replace('minute', 'min')
 			.replace('hours', 'hr').replace('hour', 'hr');
-	}
+  }
 
-	makeLatestCpItem(cp) {
-		return (
+  makeLatestCpItem(cp) {
+    return (
 			<div onClick={() => this.handleCpItemClick(cp)} class="latest-cp">
 				<span>{cp.title}</span>
 				<small>{formatSize(cp.size)}</small>
 				<small>{cp.syntaxName} | {this.shortenMoment(nicetime(cp.createdAt * 1000))}</small>
 			</div>
-		);
-	}
+    );
+  }
 
-	startUpload = () => {
-		this.setState({ uploading: true });
+  startUpload = () => {
+    this.setState({ uploading: true });
 
-		const data = {
-			title: this.state.inputTitle,
-			visibility: 0,
-			syntaxId: (this.state.inputSyntax) ? this.state.inputSyntax.id : 1,
-			content: b64EncodeUnicode(this.state.inputCode)
-		};
+    const data = {
+      title: this.state.inputTitle,
+      visibility: 0,
+      syntaxId: (this.state.inputSyntax) ? this.state.inputSyntax.id : 1,
+      content: b64EncodeUnicode(this.state.inputCode)
+    };
 
-		CpVault.uploadPaste(data).then(res => {
-			this.setState({
-				uploading: false,
-				inputCode: '',
-				inputTitle: '',
-				inputSyntax: null
-			});
+    CpVault.uploadPaste(data).then(res => {
+      this.setState({
+        uploading: false,
+        inputCode: '',
+        inputTitle: '',
+        inputSyntax: null
+      });
 
-			route('/' + res.data.key);
-		});
-	}
+      route('/' + res.data.key);
+    });
+  }
 
-	onInputCodeChange = (e) => {
-		this.setState({ inputCode: e.target.value });
-	}
+  onInputCodeChange = (e) => {
+    this.setState({ inputCode: e.target.value });
+  }
 
-	onInputTitleChange = (e) => {
-		this.setState({ inputTitle: e.target.value });
-	}
+  onInputTitleChange = (e) => {
+    this.setState({ inputTitle: e.target.value });
+  }
 
-	onInputSyntaxChange = (data) => {
-		this.setState({ inputSyntax: (data) ? data : null });
-	}
+  onInputSyntaxChange = (data) => {
+    this.setState({ inputSyntax: (data) ? data : null });
+  }
 
-	render() {
-		const progressStyle = { visibility: (this.state.uploading) ? "visible" : "hidden" };
+  render() {
+    const progressStyle = { visibility: (this.state.uploading) ? "visible" : "hidden" };
 
-		return (
+    return (
 			<main class="home">
         <section>
            <div class="upload-form">
@@ -114,6 +114,6 @@ export default class Home extends Component {
           </div>
         </section>
       </main>
-		);
-	}
+    );
+  }
 }
