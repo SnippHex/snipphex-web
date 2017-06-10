@@ -11,6 +11,10 @@ export default class Paste extends Component {
     return this.props.matches.key || this.props.key;
   }
 
+  getCodeElementNode() {
+    return this.codeContainerRef.querySelector('.code');
+  }
+
   componentDidMount() {
     this.setState({ loading: true });
 
@@ -61,17 +65,16 @@ export default class Paste extends Component {
   }
 
   afterPasteInitialized() {
-    function copyScroll(from, to) {
-      from.addEventListener('scroll', () => {
-        to.style.transform = 'translateY(' + -from.scrollTop + 'px)';
-      });
-    }
+    const codeEle = this.getCodeElementNode();
+    const linesEle = this.codeContainerRef.querySelector('.line-numbers-rows');
 
-    copyScroll(document.querySelector('.code'), document.querySelector('.line-numbers-rows'));
+    codeEle.addEventListener('scroll', () => {
+      linesEle.style.transform = 'translateY(' + -codeEle.scrollTop + 'px)';
+    });
   }
 
   getRawContent() {
-    return document.querySelector('.code').textContent;
+    return this.getCodeElementNode().textContent;
   }
 
   downloadPaste = () => {
@@ -90,7 +93,7 @@ export default class Paste extends Component {
 			<main class="home">
         <section>
 					<style dangerouslySetInnerHTML={{ __html: (this.state.themeCss) ? this.state.themeCss : '' }} />
-					<div class="s_h" dangerouslySetInnerHTML={{ __html: this.state.content }} />
+					<div ref={ele => this.codeContainerRef = ele} class="s_h" dangerouslySetInnerHTML={{ __html: this.state.content }} />
 				</section>
 			</main>
     );
