@@ -26,7 +26,8 @@
   "globals": {
     "sleep": true,
     "__VERSION__": true,
-    "__BUILD_DATE__": true
+    "__BUILD_DATE__": true,
+    "__API_URL__": true
   },
   "rules": {
     "react/jsx-no-bind": [2, { "ignoreRefs": true }],

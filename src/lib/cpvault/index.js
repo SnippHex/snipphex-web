@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = __API_URL__;
 
 function getPaste(key) {
   return fetch(`${BASE_URL}/paste/${key}`).then(res => res.json());
