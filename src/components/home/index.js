@@ -92,7 +92,6 @@ export default class Home extends Component {
 	}
 
 	onInputSyntaxChange = (data) => {
-		console.log(data);
 		this.setState({ inputSyntax: (data) ? data : null });
 	}
 
