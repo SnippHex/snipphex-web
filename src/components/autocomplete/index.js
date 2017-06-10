@@ -25,7 +25,6 @@ export default class AutoComplete extends Component {
 
 		if (this.props.onItemClick) {
 			this.props.onItemClick(data);
-
 		}
 
 		if (this.props.onItemChange) {
@@ -41,7 +40,8 @@ export default class AutoComplete extends Component {
 		this.setState({ input: e.target.value });
 
 		if (this.props.onItemChange) {
-			const item = this.props.data.find(v => v[this.props.itemNameProp].toLowerCase() === e.target.value.toLowerCase());
+			const valLower = e.target.value.toLowerCase();
+			const item = this.props.data.find(v => v[this.props.itemNameProp].toLowerCase() === valLower);
 
 			if (item) {
 				this.props.onItemChange(item);
