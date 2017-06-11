@@ -38,6 +38,16 @@ export default class App extends Component {
     this.setState({ sideBarRightToggle: !this.state.sideBarRightToggle });
   }
 
+  componentDidUpdate() {
+    // Wait for next frame, ensure that app is rendered to the real DOM
+    window.requestAnimationFrame(() => {
+      const ele = document.getElementById('splash');
+      ele.style.opacity = 0;
+
+      document.getElementById('app').style.display = 'flex';
+    });
+  }
+
   render() {
     let classes = ['app'];
     if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
