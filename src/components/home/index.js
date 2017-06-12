@@ -7,6 +7,22 @@ import base64EncodeUnicode from 'base64encode';
 import Store from 'store';
 import * as CpVault from 'cpvault';
 
+export class LatestCpItem extends Component {
+  onItemClick = () => {
+    this.props.onItemClick(this.props.data);
+  }
+
+  render() {
+    return (
+      <div onClick={this.onItemClick} class="latest-cp">
+				<span>{this.props.data.title}</span>
+				<small>{formatSize(this.props.data.size)}</small>
+				<small>{this.props.data.syntaxName} | {nicetime(this.props.data.createdAt * 1000, undefined, true)}</small>
+			</div>
+    );
+  }
+}
+
 export default class Home extends Component {
   constructor() {
     super();
@@ -36,13 +52,7 @@ export default class Home extends Component {
   }
 
   makeLatestCpItem(cp) {
-    return (
-			<div onClick={() => this.handleCpItemClick(cp)} class="latest-cp">
-				<span>{cp.title}</span>
-				<small>{formatSize(cp.size)}</small>
-				<small>{cp.syntaxName} | {nicetime(cp.createdAt * 1000, undefined, true)}</small>
-			</div>
-    );
+    return <LatestCpItem data={cp} onItemClick={this.handleCpItemClick} />;
   }
 
   startUpload = () => {
