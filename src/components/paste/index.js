@@ -90,7 +90,7 @@ export default class Paste extends Component {
 
   render() {
     return (
-			<main class="home">
+			<main class="paste">
         <section>
 					<style dangerouslySetInnerHTML={{ __html: (this.state.themeCss) ? this.state.themeCss : '' }} />
 					<div ref={ele => this.codeContainerRef = ele} class="s_h" dangerouslySetInnerHTML={{ __html: this.state.content }} />
