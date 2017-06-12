@@ -16,8 +16,7 @@ export default class Home extends Component {
       inputCode: '',
       inputTitle: '',
       inputSyntax: null,
-      syntaxes: [],
-      latestPastes: []
+      syntaxes: []
     };
   }
 
@@ -26,10 +25,7 @@ export default class Home extends Component {
     Store.update();
 
     Store.getSyntaxes().then((syntaxes) => this.setState({ syntaxes }));
-    CpVault.getLatestPastes().then(res => {
-      const pastes = res.data;
-      this.setState({ latestPastes: pastes });
-
+    Store.getLatests().then(pastes => {
       Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
       Store.update();
     });
