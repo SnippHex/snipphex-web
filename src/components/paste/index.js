@@ -89,6 +89,19 @@ export default class Paste extends Component {
   }
 
   render() {
+    const isLoading = this.state.loading;
+
+    if (isLoading) {
+      return (
+        <main class="loading">
+          <section>
+            <p>Loading the cp for you...</p>
+            <div class="progress"><div class="indeterminate" /></div>
+          </section>
+        </main>
+      );
+    }
+
     return (
 			<main class="paste">
         <section>
