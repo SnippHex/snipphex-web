@@ -89,8 +89,8 @@ store.appBar.rightMenuIcons = [];
 
 // SideBar
 store.sideBars = {};
-store.sideBars.left = { title: 'Initial', children: null };
-store.sideBars.right = { title: 'Initial', children: null };
+store.sideBars.left = { title: '', children: null };
+store.sideBars.right = { title: '', children: null };
 
 store.listen = function(ev, cb) {
   if (typeof ev === 'function') {
