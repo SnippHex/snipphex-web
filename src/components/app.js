@@ -38,7 +38,7 @@ export default class App extends Component {
     this.setState({ sideBarRightToggle: !this.state.sideBarRightToggle });
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     // Wait for next frame, ensure that app is rendered to the real DOM
     window.requestAnimationFrame(() => {
       const ele = document.getElementById('splash');
