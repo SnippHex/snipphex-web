@@ -130,11 +130,13 @@ if (storage) {
   }
 }
 
+// Save theme to user preferences on every update
 store.listen('theme', () => {
   storage.setItem('theme', store.theme);
   storage.setItem(`theme:${store.theme}`, store.themeCss);
 });
 
+// Save syntaxes to user preferences on every update
 store.listen('syntax', () => {
   storage.setItem('syntaxes', JSON.stringify(store.syntaxes));
 });
