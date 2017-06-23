@@ -16,7 +16,7 @@ export default class Paste extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: null });
 
     const key = this.getKey();
 
@@ -29,7 +29,7 @@ export default class Paste extends Component {
 
       this.setState({ data, content: html, themeCss: css, loading: false });
 
-			// Setup appbar
+      // Setup appbar
       Store.appBar.rightMenuIcons = [
         {
           id: 'copy',
@@ -45,7 +45,7 @@ export default class Paste extends Component {
         }
       ];
 
-			// Setup sidebar
+      // Setup sidebar
       Store.sideBars.right.title = data.title;
       Store.sideBars.right.children = [
         <div class="info-row"><span>Language:</span><span>{data.syntax.name}</span></div>,
@@ -57,7 +57,7 @@ export default class Paste extends Component {
       Store.update();
 
       this.afterPasteInitialized();
-    });
+    }).catch(err => this.setState({ error: err }));
 
     Store.listen('theme', () => {
       Store.getThemeCss().then(css => this.setState({ themeCss: css }));
@@ -90,6 +90,18 @@ export default class Paste extends Component {
 
   render() {
     const isLoading = this.state.loading;
+    const isFetchFailed = this.state.error;
+
+    if (isFetchFailed) {
+      return (
+        <main class="error">
+          <section>
+            <p>Too bad, we failed to get that cp for you</p>
+            <i class="icon">sentiment_very_dissatisfied</i>
+          </section>
+        </main>
+      );
+    }
 
     if (isLoading) {
       return (
