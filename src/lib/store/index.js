@@ -84,8 +84,11 @@ store.getLatests = function() {
 
 // AppBar
 store.appBar = {};
-store.appBar.rightSideBarIcon = 'info';
-store.appBar.rightMenuIcons = [];
+store.resetAppBar = () => {
+  store.appBar.rightSideBarIcon = 'info';
+  store.appBar.rightMenuIcons = [];
+};
+store.resetAppBar();
 
 // SideBar
 store.sideBars = {};

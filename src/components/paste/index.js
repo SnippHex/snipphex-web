@@ -68,6 +68,10 @@ export default class Paste extends Component {
     });
   }
 
+  componentDidUnmount() {
+    Store.resetAppBar();
+  }
+
   afterPasteInitialized() {
     const codeEle = this.getCodeElementNode();
     const linesEle = this.codeContainerRef.querySelector('.line-numbers-rows');
