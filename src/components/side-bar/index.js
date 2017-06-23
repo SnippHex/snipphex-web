@@ -5,10 +5,10 @@ export default class SideBar extends Component {
     let typeClass = (this.props.left) ? ' side-bar-left' : (this.props.right) ? ' side-bar-right' : '';
 
     return (
-			<aside class={'side-bar' + typeClass}>
+      <aside class={'side-bar' + typeClass}>
         <span class="title">{this.props.title}</span>
         <hr />
-				{this.props.children}
+        {this.props.children}
       </aside>
     );
   }

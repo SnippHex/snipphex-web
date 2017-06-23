@@ -40,11 +40,11 @@ function uploadPaste(data) {
 }
 
 export {
-	getPaste,
-	getPasteHtmlContent,
-	getSyntaxes,
-	getThemes,
-	getThemeCss,
-	getLatestPastes,
-	uploadPaste
+  getPaste,
+  getPasteHtmlContent,
+  getSyntaxes,
+  getThemes,
+  getThemeCss,
+  getLatestPastes,
+  uploadPaste
 };

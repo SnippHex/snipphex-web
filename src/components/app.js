@@ -22,10 +22,10 @@ export default class App extends Component {
     });
   }
 
-	/** Gets fired when the route changes.
-	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
-	 *	@param {string} event.url	The newly routed URL
-	 */
+  /** Gets fired when the route changes.
+   *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
+   *	@param {string} event.url	The newly routed URL
+   */
   handleRoute = e => {
     this.currentUrl = e.url;
   };
@@ -54,16 +54,16 @@ export default class App extends Component {
     if (this.state.sideBarRightToggle) classes.push('side-bar-right-toggle');
 
     return (
-			<div id="app" class={classes.join(' ')}>
-				<div class="dimmer" />
-				<AppBar rightSideBarToggleIcon={Store.appBar.rightSideBarIcon} onSideBarLeftToggle={this.onSideBarLeftToggle} onSideBarRightToggle={this.onSideBarRightToggle} rightMenuIcons={Store.appBar.rightMenuIcons} />
-				<SideBar left={true} title={Store.sideBars.left.title}>{Store.sideBars.left.children}</SideBar>
-				<SideBar right={true} title={Store.sideBars.right.title}>{Store.sideBars.right.children}</SideBar>
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Paste path="/:key" />
-				</Router>
-			</div>
+      <div id="app" class={classes.join(' ')}>
+        <div class="dimmer" />
+        <AppBar rightSideBarToggleIcon={Store.appBar.rightSideBarIcon} onSideBarLeftToggle={this.onSideBarLeftToggle} onSideBarRightToggle={this.onSideBarRightToggle} rightMenuIcons={Store.appBar.rightMenuIcons} />
+        <SideBar left={true} title={Store.sideBars.left.title}>{Store.sideBars.left.children}</SideBar>
+        <SideBar right={true} title={Store.sideBars.right.title}>{Store.sideBars.right.children}</SideBar>
+        <Router onChange={this.handleRoute}>
+          <Home path="/" />
+          <Paste path="/:key" />
+        </Router>
+      </div>
     );
   }
 }

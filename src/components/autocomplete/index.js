@@ -78,12 +78,12 @@ export default class AutoComplete extends Component {
     const containerDisplay = ((this.state.focus || this.state.mouseIn) && !this.props.disabled) ? "block" : "none";
 
     return (
-			<div class="autocomplete">
-				<input disabled={this.props.disabled} type="text" placeholder={this.props.placeholder} onInput={this.onInputInput} value={this.state.input} onFocus={this.onInputFocus} onBlur={this.onInputBlur} />
-				<div class="autocomplete__container" style={{display: containerDisplay}} onMouseEnter={this.onContainerMouseEnter} onMouseLeave={this.onContainerMouseLeave}>
-					{this.getFilteredItems().map(v => this.createItem(v))}
-				</div>
-			</div>
+      <div class="autocomplete">
+        <input disabled={this.props.disabled} type="text" placeholder={this.props.placeholder} onInput={this.onInputInput} value={this.state.input} onFocus={this.onInputFocus} onBlur={this.onInputBlur} />
+        <div class="autocomplete__container" style={{display: containerDisplay}} onMouseEnter={this.onContainerMouseEnter} onMouseLeave={this.onContainerMouseLeave}>
+          {this.getFilteredItems().map(v => this.createItem(v))}
+        </div>
+      </div>
     );
   }
 }

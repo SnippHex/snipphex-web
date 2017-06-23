@@ -15,10 +15,10 @@ export class LatestCpItem extends Component {
   render() {
     return (
       <div onClick={this.onItemClick} class="latest-cp">
-				<span>{this.props.data.title}</span>
-				<small>{formatSize(this.props.data.size)}</small>
-				<small>{this.props.data.syntaxName} | {nicetime(this.props.data.createdAt * 1000, undefined, true)}</small>
-			</div>
+        <span>{this.props.data.title}</span>
+        <small>{formatSize(this.props.data.size)}</small>
+        <small>{this.props.data.syntaxName} | {nicetime(this.props.data.createdAt * 1000, undefined, true)}</small>
+      </div>
     );
   }
 }
@@ -93,7 +93,7 @@ export default class Home extends Component {
     const progressStyle = { visibility: (this.state.uploading) ? "visible" : "hidden" };
 
     return (
-			<main class="home">
+      <main class="home">
         <section>
            <div class="upload-form">
             <h1>cpVault</h1>

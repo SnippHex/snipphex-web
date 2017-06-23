@@ -23,9 +23,9 @@ const format = {
 
 function shorten(str) {
   return str
-			.replace('seconds', 'sec').replace('second', 'sec')
-			.replace('minutes', 'min').replace('minute', 'min')
-			.replace('hours', 'hr').replace('hour', 'hr');
+      .replace('seconds', 'sec').replace('second', 'sec')
+      .replace('minutes', 'min').replace('minute', 'min')
+      .replace('hours', 'hr').replace('hour', 'hr');
 }
 
 export default function nicetime(from, to, short) {
@@ -45,15 +45,15 @@ export default function nicetime(from, to, short) {
   const years = r(months / 12);
 
   const res = seconds <= thresholds.ss && ['s', seconds]  ||
-							minutes <= 1             && ['m']           ||
-							minutes < thresholds.m   && ['mm', minutes] ||
-							hours   <= 1             && ['h']           ||
-							hours   < thresholds.h   && ['hh', hours]   ||
-							days    <= 1             && ['d']           ||
-							days    < thresholds.d   && ['dd', days]    ||
-							months  <= 1             && ['M']           ||
-							months  < thresholds.M   && ['MM', months]  ||
-							years   <= 1             && ['y']           || ['yy', years];
+              minutes <= 1             && ['m']           ||
+              minutes < thresholds.m   && ['mm', minutes] ||
+              hours   <= 1             && ['h']           ||
+              hours   < thresholds.h   && ['hh', hours]   ||
+              days    <= 1             && ['d']           ||
+              days    < thresholds.d   && ['dd', days]    ||
+              months  <= 1             && ['M']           ||
+              months  < thresholds.M   && ['MM', months]  ||
+              years   <= 1             && ['y']           || ['yy', years];
 
   const result = format[res[0]].replace('%d', res[1]);
   return (short) ? shorten(result) : result;
