@@ -18,6 +18,10 @@ export default class Paste extends Component {
   componentDidMount() {
     this.setState({ loading: true, error: null });
 
+    Store.sideBars.right.children = [];
+    Store.sideBars.right.title = 'Loading...';
+    Store.update();
+
     const key = this.getKey();
 
     Promise.all([
