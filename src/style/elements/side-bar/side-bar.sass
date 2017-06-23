@@ -36,6 +36,14 @@ $translate: 110%
     span:last-child
       flex: 1 1 auto
 
+  .menu-row
+    padding: $spacing $gutter
+    font-size: 1.2em
+    cursor: pointer
+
+    & + &
+      border-top: 1px solid $color-dark-text-divider
+
 .side-bar-left
   box-shadow: 3px 0 6px rgba(0,0,0,0.16), 3px 0 6px rgba(0,0,0,0.23)
   transform: translateX(-$translate)

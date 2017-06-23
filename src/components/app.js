@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { Router, route } from 'preact-router';
 
 import AppBar from './app-bar';
 import SideBar from './side-bar';
@@ -44,6 +44,19 @@ export default class App extends Component {
 
       document.getElementById('app').style.display = 'flex';
     });
+
+    // Default sidebar (menu)
+    Store.sideBars.left.title = 'CpVault';
+    Store.sideBars.left.children = [
+      <div class="menu-row" onClick={this.routeHome}>Upload</div>
+    ];
+
+    // I have no idea why this doesn't work without raf =(
+    window.requestAnimationFrame(() => Store.update());
+  }
+
+  routeHome() {
+    route('/');
   }
 
   render() {
