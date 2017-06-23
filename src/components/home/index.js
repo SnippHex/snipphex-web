@@ -138,7 +138,7 @@ export default class Home extends Component {
             <span class="title">Upload a new paste</span>
             <div class="box">
               <input type="text" placeholder="Title..." value={this.state.inputTitle} onChange={this.onInputTitleChange} disabled={this.state.uploading} />
-              <AutoComplete placeholder="Syntax highhlighting..." data={this.state.syntaxes} itemNameProp="name" onItemChange={this.onInputSyntaxChange} disabled={this.state.uploading} />
+              <AutoComplete placeholder="Syntax highlighting..." data={this.state.syntaxes} itemNameProp="name" onItemChange={this.onInputSyntaxChange} disabled={this.state.uploading} />
               <textarea placeholder="Code goes here..." value={this.state.inputCode} onChange={this.onInputCodeChange} disabled={this.state.uploading} />
               <button onClick={this.startUpload} disabled={this.state.uploading}>Upload</button>
               <div style={progressStyle} class="progress"><div class="indeterminate" /></div>
