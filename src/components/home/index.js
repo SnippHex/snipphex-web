@@ -123,7 +123,7 @@ export default class Home extends Component {
         <main class="loading">
           <section>
              <p>Loading...</p>
-            <div class="progress"><div class="indeterminate" /></div>
+             <div class="progress"><div class="indeterminate" /></div>
           </section>
         </main>
       );
