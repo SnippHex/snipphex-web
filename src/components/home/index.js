@@ -37,12 +37,25 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     Store.sideBars.right.title = 'Latest cps';
     Store.update();
 
-    Store.getSyntaxes().then((syntaxes) => this.setState({ syntaxes }));
+    Store.getSyntaxes()
+    .then((syntaxes) => this.setState({ syntaxes, loading: false }))
+    .catch((err) => this.setState({ error: err }));
     Store.getLatests().then(pastes => {
       Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
+      Store.update();
+    }).catch(() => {
+      Store.sideBars.right.children = (
+        <main class="error">
+          <section>
+            <p>Can't find those latests cps</p>
+            <i class="icon">sentiment_very_dissatisfied</i>
+          </section>
+        </main>
+      );
       Store.update();
     });
   }
@@ -74,7 +87,7 @@ export default class Home extends Component {
       });
 
       route('/' + res.data.key);
-    });
+    }).catch(err => this.setState({ uploadError: err }));
   }
 
   onInputCodeChange = (e) => {
@@ -91,6 +104,30 @@ export default class Home extends Component {
 
   render() {
     const progressStyle = { visibility: (this.state.uploading) ? "visible" : "hidden" };
+    const isLoading = this.state.loading;
+    const isFetchFailed = this.state.error || this.state.uploadError;
+
+    if (isFetchFailed) {
+      return (
+        <main class="error">
+          <section>
+            <p>Something bad happened reaching the server</p>
+            <i class="icon">sentiment_very_dissatisfied</i>
+          </section>
+        </main>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <main class="loading">
+          <section>
+             <p>Loading...</p>
+            <div class="progress"><div class="indeterminate" /></div>
+          </section>
+        </main>
+      );
+    }
 
     return (
       <main class="home">
