@@ -17,9 +17,7 @@ export default class App extends Component {
       sideBarRightToggle: false
     };
 
-    Store.listen(() => {
-      this.forceUpdate();
-    });
+    Store.listen(() => this.forceUpdate());
   }
 
   /** Gets fired when the route changes.
