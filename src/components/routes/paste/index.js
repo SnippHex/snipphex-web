@@ -68,7 +68,7 @@ export default class Paste extends Component {
     });
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     Store.resetAppBar();
   }
 
