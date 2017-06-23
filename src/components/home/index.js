@@ -39,7 +39,14 @@ export default class Home extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     Store.sideBars.right.title = 'Latest cps';
-    Store.sideBars.right.children = [];
+    Store.sideBars.right.children = (
+      <main class="loading">
+        <section>
+            <p>Loading...</p>
+            <div class="progress"><div class="indeterminate" /></div>
+        </section>
+      </main>
+    );
     Store.update();
 
     Store.getSyntaxes()
