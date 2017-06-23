@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import AutoComplete from '../autocomplete';
+import AutoComplete from '../../autocomplete';
 import { route } from 'preact-router';
 import nicetime from 'nicetime';
 import formatSize from 'formatsize';

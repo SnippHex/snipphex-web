@@ -3,8 +3,8 @@ import { Router, route } from 'preact-router';
 
 import AppBar from './app-bar';
 import SideBar from './side-bar';
-import Home from './home';
-import Paste from './Paste';
+import Home from './routes/home';
+import Paste from './routes/paste';
 import Store from 'store';
 
 export default class App extends Component {
