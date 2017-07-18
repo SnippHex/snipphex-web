@@ -45,22 +45,17 @@ store.getThemes = function() {
     return themesPromise;
   }
 
-  const themes = storage.getItem(`themes`);
-  if (themes) {
-    return Promise.resolve(themes);
+  if (store.themes) {
+    return Promise.resolve(store.themes);
   }
 
-  if (!store.themes) {
-    return themesPromise = CpVault.getThemes().then(res => {
-      store.themes = res.data;
-      store.update('themes');
-      themesPromise = null;
+  return themesPromise = CpVault.getThemes().then(res => {
+    store.themes = res.data;
+    store.update('themes');
+    themesPromise = null;
 
-      return store.themes;
-    });
-  }
-
-  return Promise.resolve(store.themes);
+    return store.themes;
+  });
 };
 
 
@@ -158,6 +153,12 @@ if (storage) {
     store.theme = theme;
     console.log('Theme loaded from storage.', theme);
   }
+
+  const themes = storage.getItem('themes');
+  if (themes) {
+    store.themes = JSON.parse(themes);
+    console.log('Themes loaded from storage.', store.themes.length);
+  }
 }
 
 // Save theme to user preferences on every update
@@ -169,6 +170,11 @@ store.listen('theme', () => {
 // Save syntaxes to user preferences on every update
 store.listen('syntax', () => {
   storage.setItem('syntaxes', JSON.stringify(store.syntaxes));
+});
+
+// Save themes to user preferences on every update
+store.listen('themes', () => {
+  storage.setItem('themes', JSON.stringify(store.themes));
 });
 
 export default store;
