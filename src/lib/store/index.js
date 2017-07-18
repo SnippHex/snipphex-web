@@ -37,6 +37,33 @@ store.getThemeCss = function() {
   return Promise.resolve(store.themeCss);
 };
 
+// Themes
+let themesPromise = null;
+store.themes = null;
+store.getThemes = function() {
+  if (themesPromise) {
+    return themesPromise;
+  }
+
+  const themes = storage.getItem(`themes`);
+  if (themes) {
+    return Promise.resolve(themes);
+  }
+
+  if (!store.themes) {
+    return themesPromise = CpVault.getThemes().then(res => {
+      store.themes = res.data;
+      store.update('themes');
+      themesPromise = null;
+
+      return store.themes;
+    });
+  }
+
+  return Promise.resolve(store.themes);
+};
+
+
 // Syntax
 let syntaxPromise = null;
 store.syntaxes = null;
