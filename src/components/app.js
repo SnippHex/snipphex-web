@@ -53,6 +53,11 @@ export default class App extends Component {
 
     // I have no idea why this doesn't work without raf =(
     window.requestAnimationFrame(() => Store.update());
+
+    document.addEventListener('touchstart', function removeTouchClass() {
+      document.documentElement.classList.remove('no-touch');
+      document.removeEventListener('touchstart', removeTouchClass, false);
+    }, false);
   }
 
   routeHome() {

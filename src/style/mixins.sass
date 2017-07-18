@@ -25,3 +25,11 @@
 	white-space: nowrap
 	overflow: hidden
 	text-overflow: ellipsis
+
+=hover
+  html.no-touch &:hover
+    @content
+
+=active
+  html.no-touch &:active, html &:active
+    @content
