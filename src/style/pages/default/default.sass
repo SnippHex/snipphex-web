@@ -1,0 +1,51 @@
+main.default
+    section
+      height: 100%
+      display: flex
+      flex-direction: column
+      padding: $gutter
+      flex: 1 0 auto
+
+      h1
+        font-size: 3em
+        color: $color-dark-text-secondary
+        padding: $spacing*3 $spacing $spacing*3 $spacing
+        font-weight: 300
+        text-align: center
+
+      h2
+        font-size: 1.5em
+        color: $color-dark-text-secondary
+        padding: $spacing*2 $spacing $spacing*2 $spacing
+        font-weight: 300
+
+      input,
+      button
+        width: 100%
+        height: 48px
+        outline: 0
+        border: 0
+        flex: 0 0 auto
+        padding: 0 $spacing
+        font-size: 1em
+
+      input + input
+        border-top: 1px solid $color-dark-text-divider
+
+      .box
+        +shadow-2
+        display: flex
+        flex-direction: column
+        flex: 1 0 auto
+        background: #fff
+
+      button
+        background: $secondary-color
+        color: $color-light-text-primary
+        text-transform: uppercase
+        font-weight: 300
+        cursor: pointer
+        transition: background .25s cubic-bezier(0.4, 0.0, 0.2, 1)
+
+        &:hover
+          background: lighten($secondary-color, 5%)

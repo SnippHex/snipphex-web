@@ -138,11 +138,11 @@ export default class Home extends Component {
     }
 
     return (
-      <main class="home">
+      <main class="default home">
         <section>
            <div class="upload-form">
             <h1>cpVault</h1>
-            <span class="title">Upload a new paste</span>
+            <h2>Upload a new paste</h2>
             <div class="box">
               <input type="text" placeholder="Title..." value={this.state.inputTitle} onChange={this.onInputTitleChange} disabled={this.state.uploading} />
               <AutoComplete placeholder="Syntax highlighting..." data={this.state.syntaxes} itemNameProp="name" onItemChange={this.onInputSyntaxChange} disabled={this.state.uploading} />
