@@ -69,7 +69,7 @@ export default class Home extends Component {
   }
 
   handleCpItemClick(cp) {
-    route(`/${cp.key}`);
+    route(`/p/${cp.key}`);
   }
 
   makeLatestCpItem(cp) {
@@ -94,7 +94,7 @@ export default class Home extends Component {
         inputSyntax: null
       });
 
-      route('/' + res.data.key);
+      route('/p/' + res.data.key);
     }).catch(err => this.setState({ uploadError: err }));
   }
 
