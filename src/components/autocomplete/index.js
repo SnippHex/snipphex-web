@@ -27,6 +27,12 @@ export default class AutoComplete extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.default !== this.props.default) {
+      this.setState({ input: nextProps.default || '' });
+    }
+  }
+
   onItemClick = data => {
     this.setState({ input: data[this.props.itemNameProp], focus: false, mouseIn: false });
 
@@ -78,11 +84,11 @@ export default class AutoComplete extends Component {
     const notHasInput = this.state.input.length === 0;
     const input = this.state.input.toLowerCase();
 
-    const filtered = this.props.data.filter(v => notHasInput || v[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1);
+    let filtered = this.props.data.filter(v => notHasInput || v[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1);
     if (filtered.length === 1) {
-      return this.props.data.sort((a, b) => {
-        return (b[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1) ? 1 : -1;
-      });
+      let item = filtered.shift();
+      filtered = this.props.data.filter(v => v[this.props.itemNameProp] !== item[this.props.itemNameProp]);
+      filtered.unshift(item);
     }
 
     return filtered;
