@@ -6,7 +6,14 @@ export class AutoCompleteItem extends Component {
   }
 
   render() {
-    return (<div class="autocomplete__item" onClick={this.onItemClick}>{this.props.name}</div>);
+    const isClickable = (typeof this.props.data.clickable === 'undefined') ? true : this.props.data.clickable;
+
+    let classes = "autocomplete__item";
+    if (isClickable) {
+      classes += " autocomplete__item--clickable";
+    }
+
+    return (<div class={classes} onClick={(isClickable) ? this.onItemClick : null}>{this.props.name}</div>);
   }
 }
 
@@ -71,17 +78,29 @@ export default class AutoComplete extends Component {
     const notHasInput = this.state.input.length === 0;
     const input = this.state.input.toLowerCase();
 
-    return this.props.data.filter(v => notHasInput || v[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1);
+    const filtered = this.props.data.filter(v => notHasInput || v[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1);
+    if (filtered.length === 1) {
+      return this.props.data.sort((a, b) => {
+        return (b[this.props.itemNameProp].toLowerCase().indexOf(input) !== -1) ? 1 : -1;
+      });
+    }
+
+    return filtered;
   }
 
   render() {
     const containerDisplay = ((this.state.focus || this.state.mouseIn) && !this.props.disabled) ? "block" : "none";
 
+    let items = this.getFilteredItems();
+    if (items.length === 0) {
+      items = [{ name: 'No Matches', clickable: false }];
+    }
+
     return (
       <div class="autocomplete">
         <input disabled={this.props.disabled} type="text" placeholder={this.props.placeholder} onInput={this.onInputInput} value={this.state.input} onFocus={this.onInputFocus} onBlur={this.onInputBlur} />
         <div class="autocomplete__container" style={{display: containerDisplay}} onMouseEnter={this.onContainerMouseEnter} onMouseLeave={this.onContainerMouseLeave}>
-          {this.getFilteredItems().map(v => this.createItem(v))}
+          {items.map(v => this.createItem(v))}
         </div>
       </div>
     );
