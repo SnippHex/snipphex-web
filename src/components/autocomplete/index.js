@@ -11,11 +11,11 @@ export class AutoCompleteItem extends Component {
 }
 
 export default class AutoComplete extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      input: '',
+      input: props.default || '',
       focus: false
     };
   }
