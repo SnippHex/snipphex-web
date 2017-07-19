@@ -7,7 +7,7 @@ const store = {};
 
 // Theme
 let themeCssPromise = null;
-store.theme = 'monokai';
+store.theme = storage.getItem('theme') || 'monokai';
 store.changeTheme = function(newTheme) {
   store.theme = newTheme;
 
