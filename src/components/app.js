@@ -5,6 +5,7 @@ import AppBar from './app-bar';
 import SideBar from './side-bar';
 import Home from './routes/home';
 import Paste from './routes/paste';
+import Settings from './routes/settings';
 import Store from 'store';
 
 export default class App extends Component {
@@ -48,7 +49,8 @@ export default class App extends Component {
     // Default sidebar (menu)
     Store.sideBars.left.title = 'CpVault';
     Store.sideBars.left.children = [
-      <div class="menu-row" onClick={this.routeHome}>Upload</div>
+      <div class="menu-row" onClick={this.routeHome}>Upload</div>,
+      <div class="menu-row" onClick={this.routeSettings}>Settings</div>
     ];
 
     // I have no idea why this doesn't work without raf =(
@@ -64,6 +66,10 @@ export default class App extends Component {
     route('/');
   }
 
+  routeSettings() {
+    route('/settings');
+  }
+
   render() {
     let classes = ['app'];
     if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
@@ -77,7 +83,8 @@ export default class App extends Component {
         <SideBar right={true} title={Store.sideBars.right.title}>{Store.sideBars.right.children}</SideBar>
         <Router onChange={this.handleRoute}>
           <Home path="/" />
-          <Paste path="/:key" />
+          <Settings path="/settings" />
+          <Paste path="/p/:key" />
         </Router>
       </div>
     );
