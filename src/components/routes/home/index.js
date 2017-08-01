@@ -94,7 +94,7 @@ export default class Home extends Component {
 
     const data = {
       title: this.state.inputTitle,
-      visibility: 0,
+      visibility: this.state.inputVisibility.value,
       syntaxId: (this.state.inputSyntax) ? this.state.inputSyntax.id : 1,
       content: base64EncodeUnicode(this.state.inputCode)
     };
@@ -121,6 +121,10 @@ export default class Home extends Component {
 
   onInputSyntaxChange = (data) => {
     this.setState({ inputSyntax: (data) ? data : null });
+  }
+
+  onInputVisibilityChange = (data) => {
+    this.setState({ inputVisibility: (data) ? data : null });
   }
 
   render() {
@@ -159,7 +163,7 @@ export default class Home extends Component {
             <div class="box">
               <input type="text" placeholder="Title..." value={this.state.inputTitle} onChange={this.onInputTitleChange} disabled={this.state.uploading} />
               <AutoComplete placeholder="Syntax highlighting..." data={this.state.syntaxes} itemNameProp="name" onItemChange={this.onInputSyntaxChange} disabled={this.state.uploading} />
-              <Select itemNameProp="name" data={Store.visibilities} />
+              <Select itemNameProp="name" data={Store.visibilities} onItemChange={this.onInputVisibilityChange} />
               <textarea placeholder="Code goes here..." value={this.state.inputCode} onChange={this.onInputCodeChange} disabled={this.state.uploading} />
               <button onClick={this.startUpload} disabled={this.state.uploading}>Upload</button>
               <div style={progressStyle} class="progress"><div class="indeterminate" /></div>
