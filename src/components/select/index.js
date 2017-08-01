@@ -18,8 +18,11 @@ export class SelectItem extends Component {
 export default class Select extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.default !== this.props.default) {
-      this.setState({ input: nextProps.default  || this.props.data[0][this.props.itemNameProp] });
+    if (!this.state.input ||
+        this.props.default !== nextProps.default ||
+        this.props.data !== nextProps.data ||
+        this.props.itemNameProp !== nextProps.itemNameProp) {
+      this.setState({ input: nextProps.default || nextProps.data[0][nextProps.itemNameProp] });
     }
   }
 
