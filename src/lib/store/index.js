@@ -138,6 +138,15 @@ store.listen = function(ev, cb) {
   event.bind(ev, cb);
 };
 
+store.remove = function(ev, cb) {
+  if (typeof ev === 'function') {
+    cb = ev;
+    ev = 'update';
+  }
+
+  event.unbind(ev, cb);
+};
+
 store.update = function(ev) {
   event.trigger(ev || 'update');
 };
