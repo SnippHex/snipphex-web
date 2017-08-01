@@ -158,7 +158,10 @@ export default class Home extends Component {
       <main class="default home">
         <section>
            <div class="upload-form">
-            <h1><img src="./assets/icons/logo.svg" class="logo" />cpVault</h1>
+            <div class="logo-container">
+              <img src="./assets/icons/logo.svg" class="logo" />
+              <h1>cpVault</h1>
+            </div>
             <h2>Upload a new paste</h2>
             <div class="box">
               <div style={progressStyle} class="progress"><div class="indeterminate" /></div>

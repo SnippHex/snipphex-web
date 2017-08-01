@@ -6,19 +6,29 @@ main.default
       padding: $gutter
       flex: 1 0 auto
 
+      .logo-container
+        display: flex
+        flex-direction: row
+        flex: 1 0 0
+        align-items: center
+        justify-content: center
+
+        h1
+          flex: 0 0 auto
+          padding-left: $spacing*2
+
       img.logo
         float: left
-        max-width: 64px
+        max-width: 8em
         display: block
-        margin: 0 auto
-        padding: $spacing*2
+        flex: 0 0 0
 
         @media screen and (min-height: 760px)
-          max-width: 128px
+          max-width: 10em
           float: none
 
         @media screen and (min-height: 1000px)
-          max-width: 164px
+          max-width: 15em
 
       h1
         font-size: 3em
