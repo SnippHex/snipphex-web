@@ -17,6 +17,12 @@ export class SelectItem extends Component {
 
 export default class Select extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.componentWillReceiveProps(props);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!this.state.input ||
         this.props.default !== nextProps.default ||
