@@ -72,9 +72,7 @@ export default class Paste extends Component {
       this.afterPasteInitialized();
     }).catch(err => this.setState({ error: err }));
 
-    Store.listen('theme', () => {
-      Store.getThemeCss().then(css => this.setState({ themeCss: css }));
-    });
+    Store.listen('theme', this.onThemeChange);
   }
 
   componentWillUnmount() {
@@ -82,6 +80,11 @@ export default class Paste extends Component {
     Store.sideBars.right.title = '';
     Store.sideBars.right.children = [];
     Store.resetAppBar();
+    Store.remove('theme', this.onThemeChange);
+  }
+
+  onThemeChange = () => {
+    Store.getThemeCss().then(css => this.setState({ themeCss: css }));
   }
 
   afterPasteInitialized() {
