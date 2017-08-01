@@ -162,12 +162,12 @@ export default class Home extends Component {
             <h1>cpVault</h1>
             <h2>Upload a new paste</h2>
             <div class="box">
+              <div style={progressStyle} class="progress"><div class="indeterminate" /></div>
               <input type="text" placeholder="Title..." value={this.state.inputTitle} onChange={this.onInputTitleChange} disabled={this.state.uploading} />
               <AutoComplete placeholder="Syntax highlighting..." data={this.state.syntaxes} itemNameProp="name" onItemChange={this.onInputSyntaxChange} disabled={this.state.uploading} />
-              <Select itemNameProp="name" data={Store.visibilities} onItemChange={this.onInputVisibilityChange} />
+              <Select itemNameProp="name" data={Store.visibilities} onItemChange={this.onInputVisibilityChange} disabled={this.state.uploading} />
               <textarea placeholder="Code goes here..." value={this.state.inputCode} onChange={this.onInputCodeChange} disabled={this.state.uploading} />
               <button onClick={this.startUpload} disabled={this.state.uploading}>Upload</button>
-              <div style={progressStyle} class="progress"><div class="indeterminate" /></div>
             </div>
           </div>
         </section>
