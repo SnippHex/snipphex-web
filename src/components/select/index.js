@@ -7,7 +7,7 @@ export class SelectItem extends Component {
 
   render() {
     let classes = "select__item";
-    if (this.props.data.active) {
+    if (this.props.active) {
       classes += " select__item--active";
     }
 
@@ -16,17 +16,10 @@ export class SelectItem extends Component {
 }
 
 export default class Select extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      input: props.default || this.props.data[0][this.props.itemNameProp]
-    };
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.default !== this.props.default) {
-      this.setState({ input: nextProps.default || '' });
+      this.setState({ input: nextProps.default  || this.props.data[0][this.props.itemNameProp] });
     }
   }
 
@@ -42,8 +35,8 @@ export default class Select extends Component {
     }
   }
 
-  createItem(data) {
-    return <SelectItem onItemClick={this.onItemClick} name={data[this.props.itemNameProp]} data={data} />;
+  createItem(data, active) {
+    return <SelectItem onItemClick={this.onItemClick} name={data[this.props.itemNameProp]} data={data} active={active} />;
   }
 
   render() {
@@ -54,6 +47,7 @@ export default class Select extends Component {
 
     return (
       <div class={classes}>
+        {this.props.data.map(v => this.createItem(v, this.state.input === v[this.props.itemNameProp]))}
       </div>
     );
   }
