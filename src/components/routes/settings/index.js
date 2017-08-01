@@ -14,6 +14,7 @@ export default class Settings extends Component {
   }
 
   componentDidMount() {
+    Store.title = 'Settings';
     Store.update();
     Store.getThemes().then(themes => this.setState({
       themes: themes.map(name => ({ name })),

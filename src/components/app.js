@@ -75,6 +75,8 @@ export default class App extends Component {
     if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
     if (this.state.sideBarRightToggle) classes.push('side-bar-right-toggle');
 
+    document.title = 'cpVault' + ((Store.title) ? ' - ' + Store.title : '');
+
     return (
       <div id="app" class={classes.join(' ')}>
         <div class="dimmer" />

@@ -37,6 +37,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    Store.title = '';
     this.__isMounted = true;
     this.setState({ loading: true });
     Store.sideBars.right.title = 'Latest cps';

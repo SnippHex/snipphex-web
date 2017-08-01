@@ -21,6 +21,7 @@ export default class Paste extends Component {
 
     Store.sideBars.right.children = [];
     Store.sideBars.right.title = 'Loading...';
+    Store.title = '';
     Store.update();
 
     const key = this.getKey();
@@ -37,6 +38,9 @@ export default class Paste extends Component {
       const [data, html ,css] = [res[0].data, res[1], res[2]];
 
       this.setState({ data, content: html, themeCss: css, loading: false });
+
+      // Setup title
+      Store.title = data.title;
 
       // Setup appbar
       Store.appBar.rightMenuIcons = [

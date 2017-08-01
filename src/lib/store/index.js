@@ -3,7 +3,9 @@ import * as CpVault from 'cpvault';
 
 const storage = window.localStorage;
 const event = new MicroEvent();
-const store = {};
+const store = {
+  title: ''
+};
 
 // Theme
 let themeCssPromise = null;
