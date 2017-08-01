@@ -1,0 +1,19 @@
+.select
+  display: flex
+  border: 1px solid $color-dark-text-divider
+
+  &__item
+    flex: 1 0 auto
+    padding: $spacing
+    text-align: center
+    font-size: 1.2em
+    text-transform: uppercase
+    cursor: pointer
+
+    & + &
+      border-left: 1px solid $color-dark-text-divider
+
+    &--active
+      cursor: auto
+      background: $primary-color
+      color: $color-light-text-primary
