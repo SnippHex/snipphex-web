@@ -4,7 +4,17 @@ import * as CpVault from 'cpvault';
 const storage = window.localStorage;
 const event = new MicroEvent();
 const store = {
-  title: ''
+  title: '',
+  visibilities: [
+    {
+      value: 0,
+      name: 'Public'
+    },
+    {
+      value: 1,
+      name: 'Unlisted'
+    }
+  ]
 };
 
 // Theme
