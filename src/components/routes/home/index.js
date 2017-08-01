@@ -6,7 +6,7 @@ import nicetime from 'nicetime';
 import formatSize from 'formatsize';
 import base64EncodeUnicode from 'base64encode';
 import Store from 'store';
-import * as CpVault from 'cpvault';
+import * as SnippEX from 'snippex';
 
 export class LatestCpItem extends Component {
   onItemClick = () => {
@@ -99,7 +99,7 @@ export default class Home extends Component {
       content: base64EncodeUnicode(this.state.inputCode)
     };
 
-    CpVault.uploadPaste(data).then(res => {
+    SnippEX.uploadPaste(data).then(res => {
       this.setState({
         uploading: false,
         inputCode: '',
@@ -160,7 +160,7 @@ export default class Home extends Component {
            <div class="upload-form">
             <div class="logo-container">
               <img src="./assets/icons/logo.svg" class="logo" />
-              <h1>cpVault</h1>
+              <h1>SnippEX</h1>
             </div>
             <h2>Upload a new paste</h2>
             <div class="box">

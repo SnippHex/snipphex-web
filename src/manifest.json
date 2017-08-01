@@ -1,6 +1,6 @@
 {
-  "name": "cpVault",
-  "short_name": "cpVault",
+  "name": "SnippEX",
+  "short_name": "SnippEX",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",

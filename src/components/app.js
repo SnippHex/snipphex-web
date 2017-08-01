@@ -47,7 +47,7 @@ export default class App extends Component {
     });
 
     // Default sidebar (menu)
-    Store.sideBars.left.title = 'CpVault';
+    Store.sideBars.left.title = 'SnippEX';
     Store.sideBars.left.children = [
       <div class="menu-row" onClick={this.routeHome}>Upload</div>,
       <div class="menu-row" onClick={this.routeSettings}>Settings</div>
@@ -77,7 +77,7 @@ export default class App extends Component {
     if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
     if (this.state.sideBarRightToggle) classes.push('side-bar-right-toggle');
 
-    document.title = 'cpVault' + ((Store.title) ? ' - ' + Store.title : '');
+    document.title = 'SnippEX' + ((Store.title) ? ' - ' + Store.title : '');
 
     return (
       <div id="app" class={classes.join(' ')}>

@@ -26,7 +26,7 @@ export default class AppBar extends Component {
   }
 
   render() {
-    let title = (this.props.title) ? this.props.title : 'cpVault';
+    let title = (this.props.title) ? this.props.title : 'SnippEX';
 
     return (
       <header class="app-bar">
