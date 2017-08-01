@@ -158,6 +158,7 @@ export default class Home extends Component {
       <main class="default home">
         <section>
            <div class="upload-form">
+            <img src="./assets/icons/logo.svg" class="logo" />
             <h1>cpVault</h1>
             <h2>Upload a new paste</h2>
             <div class="box">
