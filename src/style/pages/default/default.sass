@@ -7,11 +7,17 @@ main.default
       flex: 1 0 auto
 
       img.logo
-        max-width: 100px
+        float: left
+        max-width: 64px
         display: block
         margin: 0 auto
+        padding: $spacing*2
 
         @media screen and (min-height: 760px)
+          max-width: 128px
+          float: none
+
+        @media screen and (min-height: 100px)
           max-width: 164px
 
       h1
