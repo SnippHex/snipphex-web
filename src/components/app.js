@@ -62,11 +62,13 @@ export default class App extends Component {
     }, false);
   }
 
-  routeHome() {
+  routeHome = () => {
+    this.setState({ sideBarLeftToggle: false });
     route('/');
   }
 
-  routeSettings() {
+  routeSettings = () => {
+    this.setState({ sideBarLeftToggle: false });
     route('/settings');
   }
 
