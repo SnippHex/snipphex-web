@@ -37,6 +37,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    this.__isMounted = true;
     this.setState({ loading: true });
     Store.sideBars.right.title = 'Latest cps';
     Store.sideBars.right.children = (
@@ -53,19 +54,29 @@ export default class Home extends Component {
     .then((syntaxes) => this.setState({ syntaxes, loading: false }))
     .catch((err) => this.setState({ error: err }));
     Store.getLatests().then(pastes => {
-      Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
-      Store.update();
+      if (this.__isMounted) {
+        Store.sideBars.right.children = pastes.map(cp => this.makeLatestCpItem(cp));
+        Store.update();
+      }
     }).catch(() => {
-      Store.sideBars.right.children = (
-        <main class="error">
-          <section>
-            <p>Can't find those latests cps</p>
-            <i class="icon">sentiment_very_dissatisfied</i>
-          </section>
-        </main>
-      );
-      Store.update();
+      if (this.__isMounted) {
+        Store.sideBars.right.children = (
+          <main class="error">
+            <section>
+              <p>Can't find those latests cps</p>
+              <i class="icon">sentiment_very_dissatisfied</i>
+            </section>
+          </main>
+        );
+        Store.update();
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this.__isMounted = false;
+    Store.sideBars.right.title = '';
+    Store.sideBars.right.children = [];
   }
 
   handleCpItemClick(cp) {

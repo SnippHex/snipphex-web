@@ -16,6 +16,7 @@ export default class Paste extends Component {
   }
 
   componentDidMount() {
+    this.__isMounted = true;
     this.setState({ loading: true, error: null });
 
     Store.sideBars.right.children = [];
@@ -29,6 +30,10 @@ export default class Paste extends Component {
       CpVault.getPasteHtmlContent(key),
       Store.getThemeCss()
     ]).then((res) => {
+      if (!this.__isMounted) {
+        return;
+      }
+
       const [data, html ,css] = [res[0].data, res[1], res[2]];
 
       this.setState({ data, content: html, themeCss: css, loading: false });
@@ -69,6 +74,9 @@ export default class Paste extends Component {
   }
 
   componentWillUnmount() {
+    this.__isMounted = false;
+    Store.sideBars.right.title = '';
+    Store.sideBars.right.children = [];
     Store.resetAppBar();
   }
 
