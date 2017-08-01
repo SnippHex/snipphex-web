@@ -17,3 +17,12 @@
       cursor: auto
       background: $primary-color
       color: $color-light-text-primary
+
+  $self: &
+  &--disabled
+    #{$self}__item
+      background: darken(#fff, 10%) !important
+      cursor: not-allowed
+
+      &--active
+        background: lighten($primary-color, 10%) !important

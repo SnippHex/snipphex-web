@@ -47,17 +47,13 @@ export default class Select extends Component {
   }
 
   render() {
-    return (
-      <div class="select">
-        {this.props.data.map(v => {
-          if (this.state.input === v[this.props.itemNameProp]) {
-            v.active = true;
-          } else {
-            v.active = false;
-          }
+    let classes = "select";
+    if (this.props.disabled) {
+      classes += " select--disabled";
+    }
 
-          return this.createItem(v);
-        })}
+    return (
+      <div class={classes}>
       </div>
     );
   }
