@@ -28,7 +28,11 @@ export default class Select extends Component {
         this.props.default !== nextProps.default ||
         this.props.data !== nextProps.data ||
         this.props.itemNameProp !== nextProps.itemNameProp) {
-      this.setState({ input: nextProps.default || nextProps.data[0][nextProps.itemNameProp] });
+      const defaultInput = nextProps.default || nextProps.data[0][nextProps.itemNameProp]
+      this.setState({ input: defaultInput });
+
+      const data = nextProps.data.find(v => v[nextProps.itemNameProp] === defaultInput);
+      this.onItemClick(data);
     }
   }
 
