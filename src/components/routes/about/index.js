@@ -9,6 +9,8 @@ export default class About extends Component {
           <h1>Open-source project</h1>
           <p><strong>Github repository API: </strong><a href="https://github.com/david-szabo97/snipphex">https://github.com/david-szabo97/snipphex</a></p>
           <p><strong>Github repository front-end: </strong><a href="https://github.com/david-szabo97/snipphex-web">https://github.com/david-szabo97/snipphex-web</a></p>
+          <p><strong>Version: </strong>{ __VERSION__ }</p>
+          <p><strong>Build date: </strong>{ __BUILD_DATE__ }</p>
         </section>
       </main>
     );
