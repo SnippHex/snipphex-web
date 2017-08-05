@@ -19,7 +19,7 @@ const __VERSION__ = '0.1';
 
 // Build date
 const now = new Date();
-const __BUILD_DATE__ = `${now.getUTCFullYear()}-${p((now.getUTCMonth() + 1))}-${p(now.getUTCDate())}:${p(now.getUTCHours())}-${p(now.getUTCMinutes())}-${p(now.getUTCSeconds())}`;
+const __BUILD_DATE__ = `${now.getUTCFullYear()}-${p((now.getUTCMonth() + 1))}-${p(now.getUTCDate())} ${p(now.getUTCHours())}:${p(now.getUTCMinutes())}:${p(now.getUTCSeconds())}`;
 
 // API Url
 const __API_URL__ = process.env.API_URL || "http://localhost:3000";
