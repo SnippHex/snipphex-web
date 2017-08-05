@@ -3,7 +3,7 @@ import copyText from 'copytext';
 import downloadText from 'downloadtext';
 import nicetime from 'nicetime';
 import formatSize from 'formatsize';
-import * as SnippEX from 'snippex';
+import * as SnippHex from 'snipphex';
 import Store from 'store';
 
 export default class Paste extends Component {
@@ -27,8 +27,8 @@ export default class Paste extends Component {
     const key = this.getKey();
 
     Promise.all([
-      SnippEX.getPaste(key),
-      SnippEX.getPasteHtmlContent(key),
+      SnippHex.getPaste(key),
+      SnippHex.getPasteHtmlContent(key),
       Store.getThemeCss()
     ]).then((res) => {
       if (!this.__isMounted) {

@@ -1,6 +1,6 @@
 {
-  "name": "SnippEX",
-  "short_name": "SnippEX",
+  "name": "SnippHex",
+  "short_name": "SnippHex",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",

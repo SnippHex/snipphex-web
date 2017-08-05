@@ -1,5 +1,5 @@
 import MicroEvent from 'event';
-import * as SnippEX from 'snippex';
+import * as SnippHex from 'snipphex';
 
 const storage = window.localStorage;
 const event = new MicroEvent();
@@ -23,7 +23,7 @@ store.theme = storage.getItem('theme') || 'monokai';
 store.changeTheme = function(newTheme) {
   store.theme = newTheme;
 
-  return themeCssPromise = SnippEX.getThemeCss(store.theme).then(css => {
+  return themeCssPromise = SnippHex.getThemeCss(store.theme).then(css => {
     store.themeCss = css;
     store.update('theme');
     themeCssPromise = null;
@@ -61,7 +61,7 @@ store.getThemes = function() {
     return Promise.resolve(store.themes);
   }
 
-  return themesPromise = SnippEX.getThemes().then(res => {
+  return themesPromise = SnippHex.getThemes().then(res => {
     store.themes = res.data;
     store.update('themes');
     themesPromise = null;
@@ -83,7 +83,7 @@ store.getSyntaxes = function() {
     return Promise.resolve(store.syntaxes);
   }
 
-  return syntaxPromise = SnippEX.getSyntaxes().then(res => {
+  return syntaxPromise = SnippHex.getSyntaxes().then(res => {
     store.syntaxes = res.data;
     store.update('syntax');
     syntaxPromise = null;
@@ -106,7 +106,7 @@ store.getLatests = function() {
     return Promise.resolve(store.latestCps);
   }
 
-  return latestCpPromise = SnippEX.getLatestPastes().then(res => {
+  return latestCpPromise = SnippHex.getLatestPastes().then(res => {
     store.latestCps = res.data;
     store.update('latestcp');
     latestCpPromise = null;
