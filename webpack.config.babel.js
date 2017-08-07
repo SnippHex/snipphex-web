@@ -24,6 +24,9 @@ const __BUILD_DATE__ = `${now.getUTCFullYear()}-${p((now.getUTCMonth() + 1))}-${
 // API Url
 const __API_URL__ = process.env.API_URL || "http://localhost:3000";
 
+// Google analytics
+const __GOOGLE_ANALYTICS__ = process.env.GOOGLE_ANALYTICS;
+
 module.exports = {
   context: path.resolve(__dirname, "src"),
   entry: './index.js',
@@ -140,7 +143,8 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(ENV),
       '__VERSION__': JSON.stringify(__VERSION__),
       '__BUILD_DATE__': JSON.stringify(__BUILD_DATE__),
-      '__API_URL__': JSON.stringify(__API_URL__)
+      '__API_URL__': JSON.stringify(__API_URL__),
+      '__GOOGLE_ANALYTICS__': JSON.stringify(__GOOGLE_ANALYTICS__),
     }),
     new HtmlWebpackPlugin({
       template: './index.ejs',

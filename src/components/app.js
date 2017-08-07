@@ -28,6 +28,12 @@ export default class App extends Component {
    */
   handleRoute = e => {
     this.currentUrl = e.url;
+
+    let ga = window['GoogleAnalyticsObject'];
+    if (ga) {
+      ga('set', 'page', e.url);
+      ga('send', 'pageview');
+    }
   };
 
   onSideBarLeftToggle = () => {
