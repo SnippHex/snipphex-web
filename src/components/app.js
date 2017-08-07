@@ -31,6 +31,8 @@ export default class App extends Component {
 
     let ga = window['GoogleAnalyticsObject'];
     if (ga) {
+      ga = window[ga];
+
       ga('set', 'page', e.url);
       ga('send', 'pageview');
     }
