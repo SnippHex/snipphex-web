@@ -130,7 +130,7 @@ export default class Paste extends Component {
       return (
         <main class="loading">
           <section>
-             <p>Loading the snipp for you...</p>
+            <p>Loading the snipp for you...</p>
             <div class="progress"><div class="indeterminate" /></div>
           </section>
         </main>
@@ -140,7 +140,7 @@ export default class Paste extends Component {
     return (
       <main class="paste">
         <section>
-           <style dangerouslySetInnerHTML={{ __html: (this.state.themeCss) ? this.state.themeCss : '' }} />
+          <style dangerouslySetInnerHTML={{ __html: (this.state.themeCss) ? this.state.themeCss : '' }} />
           <div ref={ele => this.codeContainerRef = ele} class="s_h" dangerouslySetInnerHTML={{ __html: this.state.content }} />
         </section>
       </main>
