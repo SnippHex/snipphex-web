@@ -144,7 +144,7 @@ module.exports = {
       '__VERSION__': JSON.stringify(__VERSION__),
       '__BUILD_DATE__': JSON.stringify(__BUILD_DATE__),
       '__API_URL__': JSON.stringify(__API_URL__),
-      '__GOOGLE_ANALYTICS__': JSON.stringify(__GOOGLE_ANALYTICS__),
+      '__GOOGLE_ANALYTICS__': JSON.stringify(__GOOGLE_ANALYTICS__)
     }),
     new HtmlWebpackPlugin({
       template: './index.ejs',
