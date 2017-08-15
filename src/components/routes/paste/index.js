@@ -35,7 +35,7 @@ export default class Paste extends Component {
         return;
       }
 
-      const [data, html ,css] = [res[0].data, res[1], res[2]];
+      const [data, html, css] = [res[0].data, res[1], res[2]];
 
       this.setState({ data, content: html, themeCss: css, loading: false });
 
