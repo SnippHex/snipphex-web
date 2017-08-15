@@ -119,7 +119,7 @@ export default class Paste extends Component {
       return (
         <main class="error">
           <section>
-            <p>Too bad, we failed to get that cp for you</p>
+            <p>Too bad, we failed to get that snipp for you</p>
             <i class="icon">sentiment_very_dissatisfied</i>
           </section>
         </main>
@@ -130,7 +130,7 @@ export default class Paste extends Component {
       return (
         <main class="loading">
           <section>
-             <p>Loading the cp for you...</p>
+             <p>Loading the snipp for you...</p>
             <div class="progress"><div class="indeterminate" /></div>
           </section>
         </main>
