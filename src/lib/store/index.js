@@ -44,8 +44,8 @@ store.remove = function(ev, cb) {
   event.unbind(ev, cb);
 };
 
-store.update = function(ev) {
-  event.trigger(ev || 'update');
+store.update = function(ev, arg) {
+  event.trigger(ev || 'update', arg);
 };
 
 // Register modules
