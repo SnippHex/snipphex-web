@@ -105,10 +105,12 @@ export default class Paste extends Component {
     const raw = this.getRawContent();
 
     downloadText(fileName, raw);
+    Store.addNotification({ message: `Started downloading: ${fileName}` });
   }
 
   copyPaste = () => {
     copyText(this.getRawContent());
+    Store.addNotification({ message: `Copied to clipboard: ${this.state.data.title}` });
   }
 
   render() {
