@@ -1,6 +1,7 @@
 import MicroEvent from 'event';
 import storeAppBar from './appbar';
 import storeLatestCps from './latestcps';
+import storeNotification from './notification';
 import storeSideBar from './sidebar';
 import storeStorage from './storage';
 import storeSyntaxes from './syntaxes';
@@ -51,6 +52,7 @@ store.update = function(ev, arg) {
 // Register modules
 storeAppBar(store, storage);
 storeSideBar(store, storage);
+storeNotification(store, storage);
 
 storeThemes(store, storage);
 storeTheme(store, storage);

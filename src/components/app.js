@@ -8,6 +8,7 @@ import Paste from './routes/paste';
 import Settings from './routes/settings';
 import About from './routes/about';
 import Store from 'store';
+import { Notification } from 'react-notification';
 
 export default class App extends Component {
   constructor() {
@@ -16,9 +17,18 @@ export default class App extends Component {
     window.store = Store;
     this.state = {
       sideBarLeftToggle: false,
-      sideBarRightToggle: false
+      sideBarRightToggle: false,
+      notificationActive: false,
+      notificationProps: {
+        message: "",
+        action: null,
+        title: null
+      }
     };
 
+    Store.listen('notification', (notificationProps) => {
+      this.setState({ notificationActive: true, notificationProps });
+    });
     Store.listen(() => this.forceUpdate());
   }
 
@@ -87,6 +97,10 @@ export default class App extends Component {
     route('/about');
   }
 
+  onNotificationDismiss = () => {
+    this.setState({ notificationActive: false });
+  }
+
   render() {
     let classes = ['app'];
     if (this.state.sideBarLeftToggle) classes.push('side-bar-left-toggle');
@@ -106,6 +120,13 @@ export default class App extends Component {
           <About path="/about" />
           <Paste path="/p/:key" />
         </Router>
+        <Notification
+          isActive={this.state.notificationActive}
+          onDismiss={this.onNotificationDismiss}
+          dismissAfter={2000}
+          barStyle={{zIndex: 100000}}
+          {...this.state.notificationProps}
+        />
       </div>
     );
   }
